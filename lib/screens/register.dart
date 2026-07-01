@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:test/screens/login.dart';
+import 'package:test/screens/loggin.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Register extends StatefulWidget {
