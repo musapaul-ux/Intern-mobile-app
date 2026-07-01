@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:test/register.dart';
+import 'package:test/screens/login.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "Login",
+          "Create Account",
           style: TextStyle(
             fontSize: 48,
             fontWeight: FontWeight.bold,
@@ -40,41 +41,43 @@ class _LoginState extends State<Login> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const Text(
-                        "Welcome to our AI Legal Assistant",
-                        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                        "Create An Account With Our AI Legal Assistant App",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 96),
                       const TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: 'Email',
+                          hintText: 'Email Or Phone',
                         ),
                       ),
                       const SizedBox(height: 16),
                       const TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: 'Password',
+                          hintText: 'Create password',
                         ),
                       ),
-              
-                      Text("Forgot Password?",
-                        style: TextStyle(
-                          color: Colors.redAccent,
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.underline,
-                          decorationStyle: TextDecorationStyle.solid,
-                        )
+                      const SizedBox(height: 16),
+                      const TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Confirm password',
                         ),
-                      const SizedBox(height: 8),
+                      ),
+
+                      const SizedBox(height: 16),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red,
                           foregroundColor: Colors.white,
                         ),
                         onPressed: () {},
-                        child: const Text("Login"),
+                        child: const Text("Sign Up"),
                       ),
 
                       const SizedBox(height: 30),
@@ -88,9 +91,9 @@ class _LoginState extends State<Login> {
                               fontSize: 16,
                             ),
                             children: [
-                              const TextSpan(text: "Don't have An Account? "),
+                              const TextSpan(text: 'Already have An Account? '),
                               TextSpan(
-                                text: 'Sign Up',
+                                text: 'Sign In',
                                 style: const TextStyle(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,
@@ -102,7 +105,7 @@ class _LoginState extends State<Login> {
                                     Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => const Register(),
+                                        builder: (context) => const Login(),
                                       ),
                                     );
                                   },
@@ -128,11 +131,23 @@ class _LoginState extends State<Login> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image(image: AssetImage('images/google-logo.jpg'), width: 30, height: 30),
+                          _buildSocialButton(
+                            icon: FontAwesomeIcons.google,
+                            color: const Color(0xFFDE4032),
+                            onPressed: () {},
+                          ),
                           const SizedBox(width: 20),
-                          Image(image: AssetImage('images/x-icon.png'), width: 25, height: 25),
+                          _buildSocialButton(
+                            icon: FontAwesomeIcons.facebookF,
+                            color: const Color(0xFF3B5998),
+                            onPressed: () {},
+                          ),
                           const SizedBox(width: 20),
-                          Image(image: AssetImage('images/facebook-icon.png'), width: 40, height: 40)
+                          _buildSocialButton(
+                            icon: FontAwesomeIcons.xTwitter,
+                            color: Colors.black,
+                            onPressed: () {},
+                          ),
                         ],
                       ),
 
@@ -147,5 +162,23 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-}// Reusable circular helper button for the social media row
-  
+
+  // Reusable circular helper button for the social media row
+  Widget _buildSocialButton({
+    required dynamic icon,
+    required Color color,
+    required VoidCallback onPressed,
+  }) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 4.0),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.grey.shade300, width: 1.5),
+      ),
+      child: IconButton(
+        icon: FaIcon(icon as dynamic, color: color, size: 20),
+        onPressed: onPressed,
+      ),
+    );
+  }
+}
