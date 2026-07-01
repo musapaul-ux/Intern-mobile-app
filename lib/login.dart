@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:test/register.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -59,9 +58,16 @@ class _LoginState extends State<Login> {
                           hintText: 'Password',
                         ),
                       ),
-                      const SizedBox(height: 16),
-                     
-                   
+              
+                      Text("Forgot Password?",
+                        style: TextStyle(
+                          color: Colors.redAccent,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                          decorationStyle: TextDecorationStyle.solid,
+                        )
+                        ),
+                      const SizedBox(height: 8),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red,
@@ -122,23 +128,11 @@ class _LoginState extends State<Login> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildSocialButton(
-                            icon: FontAwesomeIcons.google,
-                            color: const Color(0xFFDE4032),
-                            onPressed: () {},
-                          ),
+                          Image(image: AssetImage('images/google-logo.jpg'), width: 30, height: 30),
                           const SizedBox(width: 20),
-                          _buildSocialButton(
-                            icon: FontAwesomeIcons.facebookF,
-                            color: const Color(0xFF3B5998),
-                            onPressed: () {},
-                          ),
+                          Image(image: AssetImage('images/x-icon.png'), width: 25, height: 25),
                           const SizedBox(width: 20),
-                          _buildSocialButton(
-                            icon: FontAwesomeIcons.xTwitter,
-                            color: Colors.black,
-                            onPressed: () {},
-                          ),
+                          Image(image: AssetImage('images/facebook-icon.png'), width: 40, height: 40)
                         ],
                       ),
 
@@ -153,23 +147,5 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
-  // Reusable circular helper button for the social media row
-  Widget _buildSocialButton({
-    required dynamic icon,
-    required Color color,
-    required VoidCallback onPressed,
-  }) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 4.0),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.grey.shade300, width: 1.5),
-      ),
-      child: IconButton(
-        icon: FaIcon(icon as dynamic, color: color, size: 20),
-        onPressed: onPressed,
-      ),
-    );
-  }
-}
+}// Reusable circular helper button for the social media row
+  
