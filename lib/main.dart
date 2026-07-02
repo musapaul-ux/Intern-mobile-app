@@ -13,14 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: ListView(
           children: [
             const SizedBox(height: 20),
             Image.network(
               'https://picsum.photos/600/300',
-              height: 350,
-              width: 300,
+              height: 300,
+              width: 200,
             ),
 
             const SizedBox(height: 32),
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
-                    width: 200,
+                    width: 150,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
@@ -59,16 +60,19 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
 
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.black,
-                      minimumSize: Size(200, 50),
+                  SizedBox(
+                    width: 150,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        
+                      ),
+                      onPressed: () {
+                        Get.to(() => const Register());
+                      },
+                      child: const Text("Register"),
                     ),
-                    onPressed: () {
-                      Get.to(() => const Register());
-                    },
-                    child: const Text("Register"),
                   ),
                 ],
               ),
